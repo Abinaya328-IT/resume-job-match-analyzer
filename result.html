@@ -1,0 +1,231 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Job Match Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Resume Job Match Analyzer</h1>
+
+        <p>{{ filename }}</p>
+
+    </div>
+
+
+    <!-- Match Score -->
+
+    <div class="card result-card">
+
+        <h2>Resume Match Score</h2>
+
+        <div class="score">
+            {{ match_score }}%
+        </div>
+
+        <!-- Progress Bar -->
+
+        <div class="progress-container">
+
+            <div class="progress-bar"
+                 style="width: {{ match_score }}%;">
+            </div>
+
+        </div>
+
+        <p class="score-text">
+            Your resume matches {{ match_score }}% of the
+            skills identified in the job description.
+        </p>
+
+    </div>
+
+
+    <!-- ATS Rating -->
+
+    <div class="card">
+
+        <h2>🤖 ATS Rating</h2>
+
+        <div class="ats-rating">
+
+            <span class="ats-icon">
+                {{ ats_icon }}
+            </span>
+
+            <span class="ats-text">
+                {{ ats_rating }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Resume Summary -->
+
+    <div class="card">
+
+        <h2>📄 Resume Summary</h2>
+
+        <p class="summary-text">
+            {{ summary }}
+        </p>
+
+    </div>
+
+
+    <!-- Skills -->
+
+    <div class="result-grid">
+
+
+        <!-- Matched Skills -->
+
+        <div class="card">
+
+            <h2>Matched Skills ✅</h2>
+
+            {% if matched_skills %}
+
+            <div class="skills">
+
+                {% for skill in matched_skills %}
+
+                <span class="skill matched">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p>No matching skills found.</p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Missing Skills -->
+
+        <div class="card">
+
+            <h2>Missing Skills ❌</h2>
+
+            {% if missing_skills %}
+
+            <div class="skills">
+
+                {% for skill in missing_skills %}
+
+                <span class="skill missing">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p>No missing skills 🎉</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Job Recommendations -->
+
+    <div class="card">
+
+        <h2>🎯 Recommended Job Roles</h2>
+
+        {% if recommended_roles %}
+
+        <div class="skills">
+
+            {% for job in recommended_roles %}
+
+            <span class="skill matched">
+                {{ job }}
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p>No job roles could be recommended.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Skill Suggestions -->
+
+    {% if missing_skills %}
+
+    <div class="suggestion-box">
+
+        <h2>💡 Skill Suggestions</h2>
+
+        <p>
+            Consider improving the following skills mentioned
+            in the job description:
+        </p>
+
+        <ul>
+
+            {% for skill in missing_skills %}
+
+            <li>
+                Learn or improve <strong>{{ skill }}</strong>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- Back Button -->
+
+    <div class="back-button">
+
+        <a href="/">
+            Analyze Another Resume
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+```

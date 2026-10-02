@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Job Match Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+
+        <div class="logo">
+            📄
+        </div>
+
+        <h1>Resume Job Match Analyzer</h1>
+
+        <p>
+            Analyze your resume and discover how well it matches
+            your target job.
+        </p>
+
+    </div>
+
+
+    <!-- Main Analyzer Card -->
+    <div class="card analyzer-card">
+
+        <form action="/analyze"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <!-- Resume Upload -->
+            <label for="resume">
+                📄 Upload Your Resume
+            </label>
+
+            <div class="upload-box">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.docx"
+                    required
+                >
+
+                <p>
+                    Supported formats:
+                    <strong>PDF, DOCX</strong>
+                </p>
+
+            </div>
+
+
+            <!-- Job Description -->
+            <label for="job_description">
+                💼 Job Description
+            </label>
+
+            <textarea
+                id="job_description"
+                name="job_description"
+                rows="10"
+                placeholder="Paste the job description here..."
+                required
+            ></textarea>
+
+
+            <!-- Analyze Button -->
+            <button type="submit">
+                🚀 Analyze Resume
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Features -->
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📄
+            </div>
+
+            <h3>Resume Analysis</h3>
+
+            <p>
+                Extract important skills from your uploaded resume.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>Match Score</h3>
+
+            <p>
+                Compare your resume skills with the job requirements.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                💡
+            </div>
+
+            <h3>Skill Insights</h3>
+
+            <p>
+                Discover matched skills and identify missing skills.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+
+        <p>
+            Resume Job Match Analyzer • Built with Python &amp; Flask
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
